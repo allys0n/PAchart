@@ -1,0 +1,42 @@
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  <script type="text/javascript">
+    google.charts.load("current", {packages:['corechart']});
+    google.charts.setOnLoadCallback(drawChart);
+    function drawChart() {
+       var data = google.visualization.arrayToDataTable([
+        ['High Covid Case Numbers in Pennsylvania Counties', 'Confirmed Cases', 'Confirmed Deaths', { role: 'annotation' } ],
+        ['Philadelphia', 13803, 541,''],
+        ['Chester', 1304, 101,''],
+        ['Lancaster', 1703, 164,''],
+		   ['Berks', 2637, 116,''],
+		   ['Montgomery', 4177, 329,''],
+		   ['Delaware', 3618, 224,''],
+		   ['Bucks', 2776, 185,''],
+		   ['Lehigh', 2719, 72,''],
+		   ['Northampton', 2008, 85,''],
+		   ['Luzerne', 2111, 82,''],
+		   ['Monroe', 1111, 54,''],
+		   ['Allegheny', 1273 , 86,''],
+      ]);
+
+      var view = new google.visualization.DataView(data);
+      view.setColumns([0, 1,
+                       { calc: "stringify",
+                         sourceColumn: 1,
+                         type: "string",
+                         role: "annotation" },
+                       2]);
+
+     var options = {
+        width: 600,
+        height: 400,
+        legend: { position: 'top', maxLines: 3 },
+        bar: { groupWidth: '75%' },
+        isStacked: true,
+      };
+      var chart = new google.visualization.ColumnChart(document.getElementById("columnchart_values"));
+      chart.draw(view, options);
+  }
+  </script>
+<div id="columnchart_values" style="width: 900px; height: 300px;"></div>
+
